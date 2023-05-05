@@ -1,7 +1,10 @@
 import "./App.css";
-
+import Main from "./Main.js";
 function App() {
-  return <div>프로젝트</div>;
+
+  return (
+    <Main></Main>
+  )
 }
 
 export default App;

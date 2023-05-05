@@ -1,0 +1,64 @@
+@keyframes play-state1 {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes play-state2 {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes play-state-reverse {
+    0% {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.grid-container {
+    margin-top: 16px;
+}
+
+.grid-container:nth-child(odd) {
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    grid-gap: 30px;
+    justify-content: flex-end;
+}
+.grid-container:nth-child(even) {
+    display: grid;
+    grid-template-columns: repeat(40, 1fr);
+    grid-gap: 30px;
+}
+
+.grid-container img{
+    width: 100px;
+}
+
+.card-animation1 {
+    animation: play-state1 60s linear infinite;
+}
+
+.card-animation2 {
+    animation: play-state2 60s linear infinite;
+}
+
+.card-animation-reverse {
+    animation: play-state-reverse 60s linear infinite;
+}
+.Card-container {
+    background-color: #534f4f;
+}
