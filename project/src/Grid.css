@@ -27,9 +27,13 @@
         transform: translateX(-100%);
     }
 }
-
+.Card-container {
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
 .grid-container {
     margin-top: 16px;
+
 }
 
 .grid-container:nth-child(odd) {
