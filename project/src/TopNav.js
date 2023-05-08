@@ -3,9 +3,7 @@ import "./nomalize.css";
 import React, { useEffect, useState, useRef } from "react";
 
 function TopNav() {
-
   const [scrollPosition, setScrollPosition] = useState(0);
-
 
   const updateScroll = () => {
     setScrollPosition(window.scrollY || document.documentElement.scrollTop);
@@ -16,14 +14,19 @@ function TopNav() {
   }, []);
 
   return (
-    <nav className={scrollPosition > 100 ? "nav-scrooled" : "nav-scrooled-reverse"} >
-      <ul>
-        <li>Home</li>
-        <li>Movie</li>
-        <li>Favorite</li>
-      </ul>
-    </nav>
-    
+    <div className='nav-container'>
+      <nav
+        className={
+          scrollPosition > 100 ? "nav-scrooled" : "nav-scrooled-reverse"
+        }
+      >
+        <ul>
+          <li>Home</li>
+          <li>Movie</li>
+          <li>Favorite</li>
+        </ul>
+      </nav>
+    </div>
   );
 }
 

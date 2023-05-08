@@ -8,8 +8,10 @@ function Main() {
   return (
     <div>
       <TopNav></TopNav>
+      
+      <Grid></Grid>
+
       <div className="box"></div>
-      {/* <Grid></Grid> */}
     </div>
   );
 }
