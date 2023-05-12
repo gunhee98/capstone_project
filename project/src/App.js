@@ -1,7 +1,13 @@
-import "./App.css";
+import Header from "./Header";
+import Movie from "./Movie";
 
 function App() {
-  return <div>프로젝트1</div>;
+  return (
+    <>
+      <Header />
+      <Movie />
+    </>
+  );
 }
 
 export default App;
