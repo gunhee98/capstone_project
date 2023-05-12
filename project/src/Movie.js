@@ -44,6 +44,9 @@ const Row = styled(motion.div)`
   position: absolute;
 `;
 const Box = styled(motion.div)`
+  background-image: url(${(props) => props.bgPhoto});
+  background-size: cover;
+  background-position: center center;
   background-color: white;
   height: 200px;
 `;
@@ -58,6 +61,7 @@ const rowVariants = {
     x: -window.outerWidth - 10,
   },
 };
+const offset = 6;
 const Movie = () => {
   const { data, isLoading } = useQuery(["movies", "nowPlaying"], getMovies);
   const [index, setIndex] = useState(0);
@@ -66,8 +70,9 @@ const Movie = () => {
     if (data) {
       if (leaving) return;
       toggleLeaving();
-
-      setIndex((prev) => (prev = prev + 1));
+      const totalMovies = data.results.length - 1;
+      const maxIndex = Math.ceil(totalMovies / offset) - 1;
+      setIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
     }
   };
   const toggleLeaving = () => setLeaving((prev) => !prev);
@@ -94,9 +99,15 @@ const Movie = () => {
                 transition={{ type: "tween", duration: 1 }}
                 key={index}
               >
-                {[1, 2, 3, 4, 5, 6].map((i) => (
-                  <Box key={i}>{i}</Box>
-                ))}
+                {data?.results
+                  .slice(1)
+                  .slice(offset * index, offset * index + offset)
+                  .map((movie) => (
+                    <Box
+                      key={movie.id}
+                      bgPhoto={makeImagePath(movie.backdrop_path, "w500")}
+                    />
+                  ))}
               </Row>
             </AnimatePresence>
           </Slider>
