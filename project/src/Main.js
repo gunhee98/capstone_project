@@ -4,13 +4,14 @@ import Grid from "./GridCards.js";
 import "./nomalize.css";
 import TopNav from "./TopNav.js";
 import './TopNav.css'
+import LoginForm from "./LoginForm.js"
 function Main() {
   return (
     <div>
       <TopNav></TopNav>
       
       <Grid></Grid>
-
+      <LoginForm></LoginForm>
       <div className="box"></div>
     </div>
   );

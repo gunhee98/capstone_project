@@ -24,6 +24,10 @@ function TopNav() {
           <li>Home</li>
           <li>Movie</li>
           <li>Favorite</li>
+          <li>Login</li>
+        </ul>
+        <ul>
+          
         </ul>
       </nav>
     </div>
