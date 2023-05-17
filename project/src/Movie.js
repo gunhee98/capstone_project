@@ -134,13 +134,13 @@ const BigOverview = styled.p`
 `;
 const rowVariants = {
   hidden: {
-    x: window.outerWidth + 10,
+    x: window.outerWidth + 5,
   },
   visible: {
     x: 0,
   },
   exit: {
-    x: -window.outerWidth - 10,
+    x: -window.outerWidth - 5,
   },
 };
 const boxVariants = {
@@ -246,7 +246,6 @@ const Movie = () => {
                   ))}
               </Row>
             </AnimatePresence>
-
             <RightBtn
               onClick={increaseIndex}
               whileHover={{
