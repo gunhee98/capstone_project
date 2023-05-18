@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getMovies } from "./api";
 import { styled } from "styled-components";
 import { makeImagePath } from "./utils";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { useNavigate, useMatch } from "react-router-dom";
-import ReactPlayer from "react-player/youtube";
+import ReactPlayer from "react-player";
+import { get } from "http";
 const Wrapper = styled.div`
   background: black;
 `;
@@ -173,11 +174,13 @@ const Movie = () => {
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const [video, setVideo] = useState(null);
+
   fetch(
     `https://api.themoviedb.org/3/movie/${data?.results[0].id}/videos?api_key=c01a03bb13a5b4c7a5c790a7c7326099`
   )
     .then((response) => response.json())
     .then((response) => setVideo(response));
+
   const increaseIndex = () => {
     if (data) {
       if (leaving) return;
