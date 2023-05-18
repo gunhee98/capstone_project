@@ -72,22 +72,19 @@ const Info = styled(motion.div)`
 const LeftBtn = styled(motion.button)`
   position: absolute;
   left: 0.5vw;
-  top: 10vh;
-  background-color: rgba(200, 200, 200, 0.5);
+  top: 11vh;
+  background-color: rgb(200, 200, 200);
+  opacity: 0.5;
   border-radius: 50px;
   font-size: 25px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0.3;
   z-index: 1;
 `;
 const RightBtn = styled(motion.button)`
   position: absolute;
   left: 96vw;
-  top: 10vh;
-  background-color: rgba(200, 200, 200, 0.5);
+  top: 11vh;
+  background-color: rgb(200, 200, 200);
+  opacity: 0.5;
   border-radius: 50px;
   font-size: 25px;
 `;
@@ -214,7 +211,7 @@ const Movie = () => {
                 transition: { type: "tween", duration: 0.5 },
               }}
             >
-              ◀︎
+              <div>◀︎</div>
             </LeftBtn>
             <AnimatePresence initial={false} onExitComplete={toggleLeaving}>
               <Row
@@ -226,7 +223,7 @@ const Movie = () => {
                 key={index}
               >
                 {data?.results
-                  .slice(1)
+                  .slice(0)
                   .slice(offset * index, offset * index + offset)
                   .map((movie) => (
                     <Box
