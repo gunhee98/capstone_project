@@ -5,6 +5,7 @@ import { styled } from "styled-components";
 import { makeImagePath } from "./utils";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { useNavigate, useMatch } from "react-router-dom";
+import ReactPlayer from "react-player/youtube";
 const Wrapper = styled.div`
   background: black;
 `;
@@ -14,7 +15,7 @@ const Loader = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Banner = styled.div`
+const Banner = styled(ReactPlayer)`
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -171,7 +172,12 @@ const Movie = () => {
   const { data, isLoading } = useQuery(["movies", "nowPlaying"], getMovies);
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
-
+  const [video, setVideo] = useState(null);
+  fetch(
+    `https://api.themoviedb.org/3/movie/${data?.results[0].id}/videos?api_key=c01a03bb13a5b4c7a5c790a7c7326099`
+  )
+    .then((response) => response.json())
+    .then((response) => setVideo(response));
   const increaseIndex = () => {
     if (data) {
       if (leaving) return;
@@ -198,7 +204,13 @@ const Movie = () => {
         <>
           <Banner
             onClick={increaseIndex}
-            bgphoto={makeImagePath(data?.results[0].backdrop_path || "")}
+            url={`https://www.youtube.com/watch?v=${video?.results[0].key}`}
+            width="100vw"
+            height="100vh"
+            loop={true}
+            playing={true}
+            muted={true}
+            controls={false}
           >
             <Title>{data?.results[0].title}</Title>
             <Overview>{data?.results[0].overview}</Overview>
