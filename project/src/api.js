@@ -6,3 +6,8 @@ export function getMovies() {
     (response) => response.json()
   );
 }
+export function getVideoMovie(movieId) {
+  return fetch(`${BASE_PATH}/movie/${movieId}/videos?api_key=${API_KEY}`).then(
+    (response) => response.json()
+  );
+}

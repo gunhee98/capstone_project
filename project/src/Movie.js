@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
-import { getMovies } from "./api";
+import { getMovies, getVideoMovie } from "./api";
 import { styled } from "styled-components";
 import { makeImagePath } from "./utils";
 import { motion, AnimatePresence, useScroll } from "framer-motion";
 import { useNavigate, useMatch } from "react-router-dom";
 import ReactPlayer from "react-player";
-import { get } from "http";
+
 const Wrapper = styled.div`
   background: black;
 `;
@@ -16,7 +16,7 @@ const Loader = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const Banner = styled(ReactPlayer)`
+const Banner = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -173,14 +173,10 @@ const Movie = () => {
   const { data, isLoading } = useQuery(["movies", "nowPlaying"], getMovies);
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
-  const [video, setVideo] = useState(null);
-
-  fetch(
-    `https://api.themoviedb.org/3/movie/${data?.results[0].id}/videos?api_key=c01a03bb13a5b4c7a5c790a7c7326099`
-  )
-    .then((response) => response.json())
-    .then((response) => setVideo(response));
-
+  const { movieVideo, videoLoading } = useQuery(
+    ["movieVideo", `${data.results[0].id}`],
+    () => getVideoMovie(data?.results[0].id)
+  );
   const increaseIndex = () => {
     if (data) {
       if (leaving) return;
@@ -205,16 +201,16 @@ const Movie = () => {
         <Loader>Loading...</Loader>
       ) : (
         <>
-          <Banner
-            onClick={increaseIndex}
-            url={`https://www.youtube.com/watch?v=${video?.results[0].key}`}
-            width="100vw"
-            height="100vh"
-            loop={true}
-            playing={true}
-            muted={true}
-            controls={false}
-          >
+          <Banner>
+            <ReactPlayer
+              url={`https://www.youtube.com/watch?v=${movieVideo?.results[0].key}`}
+              width="100vw"
+              height="100vh"
+              loop={true}
+              playing={true}
+              muted={true}
+              controls={false}
+            />
             <Title>{data?.results[0].title}</Title>
             <Overview>{data?.results[0].overview}</Overview>
           </Banner>
