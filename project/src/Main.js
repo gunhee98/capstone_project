@@ -5,14 +5,17 @@ import "./nomalize.css";
 import TopNav from "./TopNav.js";
 import './TopNav.css'
 import LoginForm from "./LoginForm.js"
+import Movie from "./Movie";
 function Main() {
+ 
   return (
     <div>
       <TopNav></TopNav>
       
       <Grid></Grid>
+      <Movie></Movie>
       <LoginForm></LoginForm>
-      <div className="box"></div>
+     
     </div>
   );
 }

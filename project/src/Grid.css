@@ -30,6 +30,8 @@
 .Card-container {
     flex-wrap: nowrap;
     overflow-x: hidden;
+    margin: 30px;
+    background: black;
 }
 .grid-container {
     margin-top: 16px;
@@ -62,7 +64,4 @@
 
 .card-animation-reverse {
     animation: play-state-reverse 60s linear infinite;
-}
-.Card-container {
-    background-color: #534f4f;
 }

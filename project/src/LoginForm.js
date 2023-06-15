@@ -1,39 +1,74 @@
 import React, { useState, useEffect } from "react";
-// import firebase from "firebase/compat/app";
-// import "firebase/compat/firestore";
-// import { auth } from "./firebase";
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/firestore";
+import { auth } from "./firebase";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+  updateProfile, } from "firebase/auth";
+
+
+
 import "./LoginForm.css";
 
 function LoginsForm() {
   const [data, setData] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [signup, setSignup] = useState(false);
+  const [name, setName] = useState("");
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+  };
+
+  const handleNameChange = (event) => {
+    setName(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    const auth = getAuth();
 
-    // const auth = getAuth();
-    // signInWithEmailAndPassword(auth, email, password)
-    //   .then((userCredential) => {
-    //     // 로그인 성공
-    //     const user = userCredential.user;
-    //     console.log(user);
-    //   })
-    //   .catch((error) => {
-    //     // 로그인 실패
-    //     // const errorCode = error.code;
-    //     // const errorMessage = error.message;
-    //     console.log("로그인에 실패하였습니다.");
-    //   });
+    if (signup === true) {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(async (userCredential) => {
+        const user = userCredential.user;
+        await updateProfile(auth.currentUser, {
+          displayName: name,
+        });
+        
+        alert("회원가입에 성공하였습니다.");
+        setEmail("");
+        setPassword("");
+        setName("");
+      })
+      .catch((error) => {
+        alert("회원가입에 실패하였습니다.");
+      });
+    }
+    else {
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // 로그인 성공
+        const user = userCredential.user;
+        console.log(user);
+        alert("로그인에 성공하였습니다.");
+        setEmail("");
+        setPassword("");
+        setName("");
+      })
+      .catch((error) => {
+        // 로그인 실패
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+        console.log("로그인에 실패하였습니다.");
+      });
+    }
+
   };
 
   return (
@@ -58,11 +93,26 @@ function LoginsForm() {
         </div>
         <div className="white">
           <div className="tab flex">
-            <h3>Login</h3>
-            <h3>SignUp</h3>
+            <h3 onClick={()=> {
+              setSignup(false);
+            }}>Login</h3>
+            <h3 onClick={()=> {
+              setSignup(true);
+            }}>SignUp</h3>
           </div>
           <div>
             <form onSubmit={handleSubmit}>
+              <>
+                {signup===true ? <label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                  placeholder="name"
+                />
+              </label> : null}
+              </>
+            
               <label>
                 <input
                   type="email"
@@ -79,7 +129,11 @@ function LoginsForm() {
                   placeholder="password"
                 />
               </label>
-              <button type="submit">로그인</button>
+              
+              <>
+                {signup===true ? <button type="submit">회원가입</button> : <button type="submit">로그인</button>}
+              </>
+              
             </form>
           </div>
         </div>
@@ -116,3 +170,4 @@ function LoginsForm() {
 }
 
 export default LoginsForm;
+
