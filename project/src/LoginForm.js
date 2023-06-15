@@ -5,16 +5,15 @@ import { auth } from "./firebase";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
   updateProfile, } from "firebase/auth";
 
-
-
 import "./LoginForm.css";
 
-function LoginsForm() {
+function LoginsForm({ closeModal }) {
   const [data, setData] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [signup, setSignup] = useState(false);
   const [name, setName] = useState("");
+  
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -60,6 +59,7 @@ function LoginsForm() {
         setEmail("");
         setPassword("");
         setName("");
+        closeModal();
       })
       .catch((error) => {
         // 로그인 실패
@@ -73,22 +73,18 @@ function LoginsForm() {
 
   return (
     <div className="card-container">
+       <h3 className="close"type="button" onClick={closeModal}>
+          닫기
+        </h3>
       <div className="wrap flex">
         <div className="white">
           <div>
-            <h3>Lorem Ipsum</h3>
+            <h2>영화 정보 사이트</h2>
+            <hr></hr>
           </div>
 
           <span>
-            is simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the industry's standard dummy text ever since the
-            1500s, when an unknown printer took a galley of type and scrambled
-            it to make a type specimen book. It has survived not only five
-            centuries, but also the leap into electronic typesetting, remaining
-            essentially unchanged. It was popularised in the 1960s with the
-            release of Letraset sheets containing Lorem Ipsum passages, and more
-            recently with desktop publishing software like Aldus PageMaker
-            including versions of Lorem Ipsum.
+            영화에 대해 정보를 더 알고 싶으시면 로그인을 해주세요.
           </span>
         </div>
         <div className="white">
@@ -100,6 +96,7 @@ function LoginsForm() {
               setSignup(true);
             }}>SignUp</h3>
           </div>
+          
           <div>
             <form onSubmit={handleSubmit}>
               <>

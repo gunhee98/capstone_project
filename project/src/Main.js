@@ -5,7 +5,7 @@ import "./nomalize.css";
 import TopNav from "./TopNav.js";
 import './TopNav.css'
 import LoginForm from "./LoginForm.js"
-import Movie from "./Movie";
+import Movie from "./routes/Movie";
 function Main() {
  
   return (
@@ -13,7 +13,7 @@ function Main() {
       <TopNav></TopNav>
       
       <Grid></Grid>
-      <Movie></Movie>
+      {/* <Movie></Movie> */}
       <LoginForm></LoginForm>
      
     </div>
