@@ -50,6 +50,7 @@ nav li {
   .login-link {
     margin-left: auto; /* 오른쪽에 위치하도록 설정 */
   }
+
 @keyframes nav-scrooled {
     0% {
         background-color: #111;

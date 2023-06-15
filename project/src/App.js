@@ -1,11 +1,16 @@
 import Header from "./Header";
 import Main from "./Main.js"
 import Movie from "./routes/Movie";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+
+
 function App() {
+
   return (
     <BrowserRouter>
-      {/* <Header /> */}
+      <Header />
       <Routes>
       <Route path="/" element={<Main />} />
         {/* <Route path="/" element={<Movie />} />

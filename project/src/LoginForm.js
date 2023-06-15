@@ -3,7 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
 import { auth } from "./firebase";
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
-  updateProfile, } from "firebase/auth";
+  updateProfile, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 import "./LoginForm.css";
 
@@ -62,10 +62,8 @@ function LoginsForm({ closeModal }) {
         closeModal();
       })
       .catch((error) => {
-        // 로그인 실패
-        // const errorCode = error.code;
-        // const errorMessage = error.message;
-        console.log("로그인에 실패하였습니다.");
+        
+        alert("로그인에 실패하였습니다.");
       });
     }
 

@@ -10,11 +10,10 @@ function Main() {
  
   return (
     <div>
-      <TopNav></TopNav>
+      {/* <TopNav></TopNav> */}
       
       <Grid></Grid>
-      {/* <Movie></Movie> */}
-      <LoginForm></LoginForm>
+      <Movie></Movie>
      
     </div>
   );
