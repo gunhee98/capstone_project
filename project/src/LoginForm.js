@@ -27,12 +27,10 @@ function LoginsForm({ closeModal }) {
     setPassword(event.target.value);
   };
 
-
-  const handleSubmit = (event) => {
+  const handleSubmitSignUp = (event) => {
     event.preventDefault();
     const auth = getAuth();
-
-    if (signup === true) {
+  
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (userCredential) => {
         const user = userCredential.user;
@@ -48,9 +46,13 @@ function LoginsForm({ closeModal }) {
       .catch((error) => {
         alert("회원가입에 실패하였습니다.");
       });
-    }
-    else {
-      signInWithEmailAndPassword(auth, email, password)
+  };
+  
+  const handleSubmitSignIn = (event) => {
+    event.preventDefault();
+    const auth = getAuth();
+  
+    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // 로그인 성공
         const user = userCredential.user;
@@ -60,15 +62,34 @@ function LoginsForm({ closeModal }) {
         setPassword("");
         setName("");
         closeModal();
+        
+        setPersistence(auth, browserLocalPersistence)
+          .then(() => {
+            // 로그인 유지 설정이 성공한 경우
+            console.log("로그인 유지 설정 완료");
+  
+            // 다른 작업 수행
+          })
+          .catch((error) => {
+            // 로그인 유지 설정 오류 처리
+            console.log("로그인 유지 설정 오류:", error);
+          });
       })
       .catch((error) => {
-        
         alert("로그인에 실패하였습니다.");
       });
-    }
-
   };
-
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    if (signup === true) {
+      handleSubmitSignUp(event);
+    } else {
+      handleSubmitSignIn(event);
+    }
+  };
+  
   return (
     <div className="card-container">
        <h3 className="close"type="button" onClick={closeModal}>
@@ -126,7 +147,7 @@ function LoginsForm({ closeModal }) {
               </label>
               
               <>
-                {signup===true ? <button type="submit">회원가입</button> : <button type="submit">로그인</button>}
+                {signup===true ? <button type="submit">회원가입</button> : <button className ="loginBtn"type="submit">로그인</button>}
               </>
               
             </form>

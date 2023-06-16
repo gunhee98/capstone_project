@@ -6,15 +6,17 @@ import TopNav from "./TopNav.js";
 import './TopNav.css'
 import LoginForm from "./LoginForm.js"
 import Movie from "./routes/Movie";
+import AccountDetail from "./AccountDetail";
+
 function Main() {
  
   return (
     <div>
-      {/* <TopNav></TopNav> */}
+      <TopNav></TopNav>
       
       <Grid></Grid>
       <Movie></Movie>
-     
+      
     </div>
   );
 }

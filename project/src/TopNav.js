@@ -4,13 +4,14 @@ import "./LoginForm";
 import React, { useEffect, useState } from "react";
 import LoginsForm from "./LoginForm";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function TopNav() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userDisplayName, setUserDisplayName] = useState("");
   const [showModal, setShowModal] = useState(false);
-
+  const [showSubMenu, setShowSubMenu] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
@@ -58,8 +59,11 @@ function TopNav() {
         // 로그아웃 실패 처리
         console.log("로그아웃 오류:", error);
       });
-  };
 
+  };
+  const handleDisplayNameClick = () => {
+    setShowSubMenu(!showSubMenu); // 새로운 메뉴 표시 상태를 변경하여 토글
+  };
   return (
     <div className="nav-container">
       <nav
@@ -68,26 +72,24 @@ function TopNav() {
         }
       >
         <ul>
-          <li>Home</li>
+          <li><Link to="/">Home</Link></li>
           <li>Movie</li>
           {isLoggedIn ? (
-            <li style={{ cursor: 'auto' }} className="login-link">
-              {userDisplayName ? (
-                `${userDisplayName}님`
-              ) : (
-                ""
+            <li className="login-link" onClick={handleDisplayNameClick}>
+              {userDisplayName ? `${userDisplayName}님` : ""}
+              {showSubMenu && (
+                <ul className="sub-menu">
+                  {/* 추가적인 서브 메뉴 아이템들 */}
+                  <li><Link to="/Account">계정 탈퇴</Link></li>
+                </ul>
               )}
             </li>
           ) : (
             <li className="login-link" onClick={handleLoginClick}>
               Login
             </li>
-          )}
-          {isLoggedIn && (
-            <li onClick={handleLogout}>
-              Logout
-            </li>
-          )}
+          )} : 
+          {!showModal && isLoggedIn && <li onClick={handleLogout}>Logout</li>}
         </ul>
       </nav>
       {showModal && (

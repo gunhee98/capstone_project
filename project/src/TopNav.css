@@ -50,7 +50,25 @@ nav li {
   .login-link {
     margin-left: auto; /* 오른쪽에 위치하도록 설정 */
   }
-
+  .sub-menu {
+    display: none; /* 초기에는 메뉴를 숨김 */
+    position: absolute; /* 절대 위치 설정 */
+    top: 100%; /* 부모 요소 아래에 위치하도록 설정 */
+    left: 0; /* 왼쪽 정렬 */
+    background-color: #111; /* 배경색 설정 */
+    font-size: 12px;
+    text-align: center;
+    height: auto;
+  }
+  
+  .login-link {
+    position: relative; /* 상대 위치 설정 */
+  }
+  
+  .login-link:hover .sub-menu {
+    display: block; /* hover 시 메뉴 표시 */
+  }
+  
 @keyframes nav-scrooled {
     0% {
         background-color: #111;
