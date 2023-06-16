@@ -125,7 +125,7 @@ const Movie = () => {
     );
   return (
     <Wrapper>
-      <TopNav></TopNav>
+      
       <Helmet>
         <title>Movie</title>
       </Helmet>

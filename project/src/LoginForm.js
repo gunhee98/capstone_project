@@ -67,10 +67,8 @@ function LoginsForm({ closeModal }) {
           .then(() => {
             // 로그인 유지 설정이 성공한 경우
             window.location.reload();
-            // 다른 작업 수행
           })
           .catch((error) => {
-            // 로그인 유지 설정 오류 처리
             console.log("로그인 유지 설정 오류:", error);
           });
       })
@@ -153,33 +151,7 @@ function LoginsForm({ closeModal }) {
           </div>
         </div>
       </div>
-      {/* <div className="left"></div>
-      <div className="left loginForm">
-        <div className="flex ">
-          <div className="left">
-            <span>Login</span>
-          </div>
-          <div className="left">
-            <span>Sign up</span>
-          </div>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            
-            <input type="email" value={email} onChange={handleEmailChange} placeholder="email"/>
-          </label>
-          <label>
-            
-            <input
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="password"
-            />
-          </label>
-          <button type="submit">로그인</button>
-        </form>
-      </div> */}
+     
     </div>
   );
 }

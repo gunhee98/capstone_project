@@ -12,8 +12,7 @@ function Main() {
  
   return (
     <div>
-      <TopNav></TopNav>
-      
+
       <Grid></Grid>
       <Movie></Movie>
       

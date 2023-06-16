@@ -8,6 +8,8 @@ nav {
     height: 100px;
     position: fixed;
     z-index: 999;
+    background-color: #111;
+    
 }
 
 ul {
@@ -36,11 +38,11 @@ nav li {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 검은색 불투명 배경 */
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999; /* 모달을 맨 위로 표시하기 위한 z-index 값 */
+    z-index: 9999; 
   }
   
   .modal {
@@ -48,14 +50,14 @@ nav li {
     padding: 20px;
   }
   .login-link {
-    margin-left: auto; /* 오른쪽에 위치하도록 설정 */
+    margin-left: auto; 
   }
   .sub-menu {
-    display: none; /* 초기에는 메뉴를 숨김 */
-    position: absolute; /* 절대 위치 설정 */
-    top: 100%; /* 부모 요소 아래에 위치하도록 설정 */
-    left: 0; /* 왼쪽 정렬 */
-    background-color: #111; /* 배경색 설정 */
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    background-color: #111; 
     font-size: 12px;
     text-align: center;
     height: auto;
@@ -63,11 +65,11 @@ nav li {
   
   .login-link {
     font-size: 24px;
-    position: relative; /* 상대 위치 설정 */
+    position: relative;
   }
   
   .login-link:hover .sub-menu {
-    display: block; /* hover 시 메뉴 표시 */
+    display: block; 
   }
   
 @keyframes nav-scrooled {
@@ -87,8 +89,9 @@ nav li {
     }
 
     100% {
+      background-color: #111;
     }
-    background-color: #111;
+    
 }
 
 .nav-scrooled {
