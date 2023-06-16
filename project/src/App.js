@@ -15,9 +15,8 @@ function App() {
       <Route path="/" element={<Main />} />
       <Route path="/Account" element={<AccountDetail />} />
       
-        {/* <Route path="/" element={<Movie />} />
         <Route path="/movie" element={<Movie />} />
-        <Route path="/movies/:id" element={<Movie />} /> */}
+        <Route path="/movies/:id" element={<Movie />} />
       </Routes>
     </BrowserRouter>
   );

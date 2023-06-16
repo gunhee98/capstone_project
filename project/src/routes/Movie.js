@@ -12,6 +12,7 @@ import { useNavigate, useMatch } from "react-router-dom";
 import Sliders from "../components/Sliders";
 import Banner from "../components/Banner";
 import { Helmet } from "react-helmet-async";
+import TopNav from "../TopNav"
 const Wrapper = styled.div`
   height: 205vh;
   background-color: black;
@@ -124,6 +125,7 @@ const Movie = () => {
     );
   return (
     <Wrapper>
+      <TopNav></TopNav>
       <Helmet>
         <title>Movie</title>
       </Helmet>

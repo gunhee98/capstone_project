@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import LoginsForm from "./LoginForm";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Movie from "./routes/Movie";
 
 function TopNav() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -73,7 +74,7 @@ function TopNav() {
       >
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li>Movie</li>
+          <li><Link to="/movie">Movie</Link></li>
           {isLoggedIn ? (
             <li className="login-link" onClick={handleDisplayNameClick}>
               {userDisplayName ? `${userDisplayName}님` : ""}
