@@ -4,8 +4,6 @@ import Movie from "./routes/Movie";
 import AccountDetail from "./AccountDetail";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-
-
 function App() {
 
   return (
@@ -16,7 +14,7 @@ function App() {
       <Route path="/Account" element={<AccountDetail />} />
       
         <Route path="/movie" element={<Movie />} />
-        <Route path="/movies/:id" element={<Movie />} />
+        <Route path="movie/movies/:id" element={<Movie />} />
       </Routes>
     </BrowserRouter>
   );

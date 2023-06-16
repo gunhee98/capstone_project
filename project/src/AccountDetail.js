@@ -1,5 +1,6 @@
 import { getAuth, deleteUser } from "firebase/auth";
 import TopNav from "./TopNav";
+import { useNavigate } from "react-router-dom";
 
 function AccountDetail() {
   const containerStyle = {
@@ -7,14 +8,15 @@ function AccountDetail() {
     justifyContent: "center",
     alignItems: "center",
   };
+  const navigate = useNavigate();
   const handleDeleteAccount = async () => {
     const auth = getAuth();
     const user = auth.currentUser;
     if (user) {
       try {
         await deleteUser(user);
-        console.log("계정이 성공적으로 삭제되었습니다.");
-        // 추가 작업 수행
+        alert("계정이 성공적으로 삭제되었습니다.");
+        navigate('/')
       } catch (error) {
         console.log("계정 삭제 오류:", error);
       }
@@ -28,7 +30,7 @@ function AccountDetail() {
       <TopNav></TopNav>
       <div style={containerStyle}>
         {" "}
-        <button style={{}} onClick={handleDeleteAccount}>
+        <button onClick={handleDeleteAccount}>
           계정 탈퇴
         </button>
       </div>

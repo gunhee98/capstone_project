@@ -91,7 +91,7 @@ const BigOverview = styled.p`
 const Movie = () => {
   const navigate = useNavigate();
   const { scrollY } = useScroll();
-  const bigMovieMatch = useMatch("/movies/:movieId");
+  const bigMovieMatch = useMatch("/movie/movies/:movieId");
   const { data: nowMovie, isLoading: nowLoading } = useQuery(
     ["movies", "nowPlaying"],
     getMovies

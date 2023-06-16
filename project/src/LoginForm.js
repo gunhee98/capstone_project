@@ -66,8 +66,7 @@ function LoginsForm({ closeModal }) {
         setPersistence(auth, browserLocalPersistence)
           .then(() => {
             // 로그인 유지 설정이 성공한 경우
-            console.log("로그인 유지 설정 완료");
-  
+            window.location.reload();
             // 다른 작업 수행
           })
           .catch((error) => {

@@ -45,7 +45,7 @@ const Info = styled(motion.div)`
 const RightBtn = styled(motion.button)`
   position: absolute;
   left: 96vw;
-  top: 10vh;
+  top: 2vh;
   background-color: rgba(200, 200, 200, 0.5);
   border-radius: 50px;
   font-size: 25px;
@@ -58,7 +58,7 @@ const RightBtn = styled(motion.button)`
 const LeftBtn = styled(motion.button)`
   position: absolute;
   left: 0.5vw;
-  top: 10vh;
+  top: 2vh;
   background-color: rgba(200, 200, 200, 0.5);
   border-radius: 50px;
   font-size: 25px;
@@ -104,7 +104,7 @@ const Slider = ({ data }) => {
   const toggleLeaving = () => setLeaving((prev) => !prev);
   const toggleLeavingL = () => setLeaving((prev) => !prev);
   const onBoxClicked = (movieId) => {
-    navigate(`movies/${movieId}`);
+    navigate(`/movie/movies/${movieId}`);
   };
   const rowVariants = {
     hidden: (back) => ({
