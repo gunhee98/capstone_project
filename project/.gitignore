@@ -24,4 +24,4 @@ yarn-error.log*
 
 /src/Config.js
 /src/firebase.js
-/src/aip.js
+/src/api.js
